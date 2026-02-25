@@ -1,0 +1,591 @@
+/* Estilos Generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #667eea;
+    position: relative;
+}
+
+h1 {
+    color: #667eea;
+    font-size: 2em;
+}
+
+h2 {
+    color: #667eea;
+    border-left: 5px solid #764ba2;
+    padding-left: 15px;
+    margin-top: 25px;
+}
+
+/* Botón Modo Básico */
+.btn-modo-basico {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-modo-basico:hover {
+    background-color: #5a6268;
+}
+
+/* Estilos del Formulario */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"], 
+input[type="tel"],
+input[type="number"], 
+input[type="date"],
+input[type="file"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+/* Preview de imagen */
+#preview-container {
+    margin-top: 10px;
+}
+
+#preview-container img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}
+
+/* Estilos de Cámara */
+.btn-camara-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-camara-wrapper:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+}
+
+.btn-camara-wrapper span {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.loader {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  background: #FFF;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.loader:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  transform: rotate(45deg) translate(30%, 40%);
+  background: #ff9371;
+  box-shadow: 32px -34px 0 5px #ff3d00;
+  animation: slide 2s infinite ease-in-out alternate;
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ff3d00;
+  transform: rotate(0deg);
+  transform-origin: 35px 145px;
+  animation: rotate 2s infinite ease-in-out;
+}
+
+@keyframes slide {
+  0%, 100% {
+    bottom: -35px
+  }
+
+  25%, 75% {
+    bottom: -2px
+  }
+
+  20%, 80% {
+    bottom: 2px
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(-15deg)
+  }
+
+  25%, 75% {
+    transform: rotate(0deg)
+  }
+
+  100% {
+    transform: rotate(25deg)
+  }
+}
+
+.camara-container {
+    margin-top: 10px;
+    border: 3px solid #667eea;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#video-camara {
+    width: 100%;
+    max-height: 400px;
+    display: block;
+    background: #000;
+}
+
+.controles-camara {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #f8f9fa;
+    justify-content: center;
+}
+
+.btn-camara {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-camara:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-capturar {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-capturar:hover {
+    background-color: #218838;
+}
+
+.btn-cancelar-cam {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-cancelar-cam:hover {
+    background-color: #c82333;
+}
+
+.foto-capturada {
+    text-align: center;
+}
+
+.foto-capturada img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    border: 3px solid #28a745;
+    margin-bottom: 10px;
+}
+
+.btn-eliminar-foto {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-eliminar-foto:hover {
+    background-color: #c82333;
+}
+
+/* Estilos de Botones */
+.btn-submit, .btn-reporte {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-reporte {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-reporte:hover {
+    background-color: #218838;
+}
+
+/* Acciones de Reporte */
+.acciones-reporte {
+    margin-bottom: 20px;
+}
+
+.btn-reporte {
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Estilos de la Tabla */
+.tabla-wrapper {
+    overflow-x: auto;
+}
+
+#tablaRegistros {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.9em;
+}
+
+#tablaRegistros th, #tablaRegistros td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#tablaRegistros th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+}
+
+#tablaRegistros tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+#tablaRegistros tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Miniatura de foto */
+.foto-mini {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.foto-mini:hover {
+    transform: scale(1.1);
+}
+
+/* Mensaje de Contador */
+#contador-registros {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Estilos de Totales */
+.balance-box {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border: 3px solid #28a745;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #155724;
+}
+
+.balance-box span {
+    font-size: 1.5em;
+    color: #28a745;
+    float: right;
+    font-weight: bold;
+}
+
+.total-box {
+    background: linear-gradient(135deg, #e6f7ff 0%, #cfe9ff 100%);
+    border: 3px solid #667eea;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #0056b3;
+}
+
+.total-box p {
+    margin: 8px 0;
+}
+
+.total-box span {
+    font-size: 1.2em;
+    color: #dc3545;
+    float: right;
+    font-weight: bold;
+}
+
+/* Caja de Empleados */
+.empleados-box {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+    border: 3px solid #ffc107;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #856404;
+}
+
+.empleados-box p {
+    margin: 8px 0;
+}
+
+.empleados-box span {
+    font-size: 1.2em;
+    color: #28a745;
+    float: right;
+    font-weight: bold;
+}
+
+/* Botones de Acción */
+.btn-editar {
+    background-color: #ffc107;
+    color: #333;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 0.85em;
+    transition: background-color 0.2s;
+}
+
+.btn-editar:hover {
+    background-color: #e0a800;
+}
+
+.btn-borrar {
+    background-color: #dc3545;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.2s;
+}
+
+.btn-borrar:hover {
+    background-color: #c82333;
+}
+
+.btn-ver-foto {
+    background-color: #17a2b8;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 0.85em;
+    transition: background-color 0.2s;
+}
+
+.btn-ver-foto:hover {
+    background-color: #138496;
+}
+
+/* Modal */
+.modal-oculto {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 25px;
+    border: none;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #667eea;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-cancelar {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-cancelar:hover {
+    background-color: #5a6268;
+}
+
+/* Modal de Foto */
+.modal-foto {
+    max-width: 90%;
+    max-height: 90vh;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-foto img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #ccc;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .btn-modo-basico {
+        position: static;
+        display: block;
+        margin-bottom: 15px;
+    }
+}

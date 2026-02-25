@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 Modo Avanzado - Sistema de Registro</title>
+    
+    <link rel="stylesheet" href="Modoav.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>🔧 Modo Avanzado - Registro Completo</h1>
+            <a href="index.html" class="btn-modo-basico">← Modo Básico</a>
+        </header>
+
+        <section id="registro-form">
+            <h2>Datos del Vehículo (Modo Avanzado)</h2>
+            <form id="registroForm">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tipo">Tipo de Carro:</label>
+                        <select id="tipo" required>
+                            <option value="Sedan">carro</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Camioneta">Camioneta</option>
+                            <option value="Moto">Moto</option>
+                            <option value="Otro">insumos</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="color">Color del Vehículo:</label>
+                        <input type="text" id="color" placeholder="Ej: Rojo, Negro, Blanco" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefono">Teléfono del Cliente:</label>
+                        <input type="tel" id="telefono" placeholder="Ej: 3111234567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="numEmpleados">Empleados que Trabajaron:</label>
+                        <input type="number" id="numEmpleados" min="1" value="1" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="costo">Costo Cobrado ($):</label>
+                        <input type="number" id="costo" step="0.01" min="0" value="0.00" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="insumos">Costo de Insumos ($):</label>
+                        <input type="number" id="insumos" step="0.01" min="0" value="0.00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>📷 Foto del Vehículo (opcional):</label>
+                    <div class="btn-camara-wrapper" onclick="abrirCamara()">
+                        <div class="loader"></div>
+                        <span>Tomar Foto</span>
+                    </div>
+                    <div id="preview-container"></div>
+                    <input type="hidden" id="fotoVehiculo">
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    ✅ Registrar Llegada (Hora Automática)
+                </button>
+            </form>
+        </section>
+
+        <section id="reporte-section">
+            <h2>Reporte y Registros Avanzados</h2>
+            
+            <div id="balance-caja-container" class="balance-box">
+            </div>
+
+            <div id="detalle-ingresos-container" class="total-box">
+            </div>
+
+            <div id="detalle-empleados-container" class="empleados-box">
+            </div>
+            
+            <div class="acciones-reporte">
+                <button onclick="generarReportePDF()" class="btn-reporte">
+                    📥 Generar Reporte PDF
+                </button>
+            </div>
+            
+            <p id="contador-registros">Cargando...</p>
+
+            <h3>Vista Previa de Registros</h3>
+            <div class="tabla-wrapper">
+                <table id="tablaRegistros">
+                    <thead>
+                        <tr>
+                            <th>Hora</th>
+                            <th>Tipo</th>
+                            <th>Color</th>
+                            <th>Teléfono</th>
+                            <th>Empleados</th>
+                            <th>Costo</th>
+                            <th>Insumos</th>
+                            <th>Foto</th>
+                            <th>Acciones</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Modal de Edición -->
+            <div id="modalEdicion" class="modal-oculto">
+                <div class="modal-content">
+                    <h3>Modificar Registro</h3>
+                    <form id="edicionFormContent">
+                        <input type="hidden" id="edit-index">
+                        
+                        <div class="form-group">
+                            <label for="edit-color">Color:</label>
+                            <input type="text" id="edit-color" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-telefono">Teléfono:</label>
+                            <input type="tel" id="edit-telefono">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-numEmpleados">Empleados que Trabajaron:</label>
+                            <input type="number" id="edit-numEmpleados" min="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-costo">Costo Cobrado ($):</label>
+                            <input type="number" id="edit-costo" step="0.01" min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-insumos">Costo de Insumos ($):</label>
+                            <input type="number" id="edit-insumos" step="0.01" min="0" required>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">Guardar Cambios</button>
+                        <button type="button" onclick="ocultarModal()" class="btn-cancelar">Cancelar</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal de Ver Foto -->
+            <div id="modalFoto" class="modal-oculto">
+                <div class="modal-content modal-foto">
+                    <span class="close-modal" onclick="cerrarModalFoto()">&times;</span>
+                    <img id="imagenAmpliada" src="" alt="Foto del vehículo">
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <script src="Modoav.js"></script>
+
+</body>
+</html>
